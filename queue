@@ -1,0 +1,156 @@
+//////////circular queue////////////////
+class MyCircularQueue {
+public:
+int arr[3000];
+int front=-1;
+int rear=-1;
+int size=200;
+
+    MyCircularQueue(int k) {
+        front=-1;
+        rear=-1;
+        size=k;
+    }
+    bool enQueue(int value) {
+        if(isFull())
+        {
+            return false;
+        }
+        else
+        {
+            if(front==-1 && rear==-1)
+            {
+                front++;
+                rear++;
+                arr[rear]=value;
+            }
+            else{
+            rear=(rear+1)%size;
+            arr[rear]=value;
+            }
+        }
+        return true;
+    }
+    
+    bool deQueue() {
+        if(isEmpty())
+        {
+            return false;
+        }
+        else
+        {
+            if(front==rear)
+            {
+                front=-1;
+                rear=-1;
+            }
+            else
+            {
+                front=(front+1)%size;
+            }
+        }
+        return true;
+    }
+    
+    int Front() {
+        if(!isEmpty())
+        {
+            return arr[front];
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    
+    int Rear() {
+        if(!isEmpty())
+        {
+            return arr[rear];
+        }
+        else
+        return -1;
+    }
+    
+    bool isEmpty() {
+        if(front==-1 && rear==-1)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    bool isFull() {
+       if((rear+1)%size==front)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        } 
+    }
+};
+///////////////simple queue////////////////////
+class MyQueue {
+public:
+   int arr[200];
+    int f=0;
+    int r=0;
+    int size=200;
+    int temp;
+    MyQueue() {
+        
+    }
+    
+    bool isfull()
+    {
+        if(r==size)
+        return true;
+        else
+        return false;
+    }
+    void push(int x) {
+        if(isfull())
+        {
+            return;
+        }
+        else
+        {
+            arr[r]=x;
+            r++;
+        }
+    }
+    
+    int pop() {
+        if(empty())
+        {
+            return 1;
+        }
+        else
+        {
+            temp=arr[f];
+            f++;
+        }
+        return temp;
+    }
+    
+    int peek() {
+        if(empty())
+        return true;
+        int temp=arr[f];
+        return temp;
+    }
+    
+    bool empty() {
+        if (f==r)
+        {
+        f=0;
+        r=0;
+        return true;}
+        else
+        {
+        return false;
+        }
+    }
+};
